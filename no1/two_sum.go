@@ -1,7 +1,9 @@
 package no1
 
+import "sort"
+
 func twoSum(nums []int, target int) []int {
-	return twoSum1(nums, target)
+	return twoSum2(nums, target)
 }
 
 func twoSum1(nums []int, target int) []int {
@@ -12,6 +14,39 @@ func twoSum1(nums []int, target int) []int {
 		for j := i + 1; j < len(nums); j++ {
 			if num+nums[j] == target {
 				r = append(r, i, j)
+				break
+			}
+		}
+	}
+	return r
+}
+
+func twoSum2(nums []int, target int) []int {
+	var r = make([]int, 0)
+
+	var m = make(map[int][]int) // 值 -> 下标数组
+	for i, s := range nums {
+		m[s] = append(m[s], i)
+	}
+
+	sort.Ints(nums)
+
+	l := len(nums)
+	for i := 0; i < l; i++ {
+		x := nums[i]
+		for j := i + 1; j < l; j++ {
+			y := nums[j]
+			if x+y == target {
+				is := m[x]
+				js := m[y]
+				ai := is[0]
+				aj := js[0]
+				if aj == ai {
+					aj = js[1]
+				}
+				r = append(r, ai, aj)
+				break
+			} else if x+y > target {
 				break
 			}
 		}
