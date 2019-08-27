@@ -1,9 +1,11 @@
 package no1
 
-import "sort"
+import (
+	"sort"
+)
 
 func twoSum(nums []int, target int) []int {
-	return twoSum2(nums, target)
+	return twoSum3(nums, target)
 }
 
 func twoSum1(nums []int, target int) []int {
@@ -51,5 +53,23 @@ func twoSum2(nums []int, target int) []int {
 			}
 		}
 	}
+	return r
+}
+
+func twoSum3(nums []int, target int) []int {
+	var r = make([]int, 2)
+
+	var m = make(map[int]int) // target-当前值 -> 下标
+
+	for i, s := range nums {
+		d := target - s
+		if v, ok := m[d]; ok {
+			r[0] = v
+			r[1] = i
+			return r
+		}
+		m[s] = i
+	}
+
 	return r
 }
