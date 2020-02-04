@@ -15,6 +15,7 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 		{"No3", "pwwkew", 3},
 		{"No4", "dvdf", 3},
 		{"No5", " ", 1},
+		{"No6", "umvejcuuk", 6},
 	} {
 		t.Run(cas.Name, func(t *testing.T) {
 			r := lengthOfLongestSubstring(cas.Input)
