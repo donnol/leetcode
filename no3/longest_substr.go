@@ -53,6 +53,7 @@ func lengthOfLongestSubstring2(s string) int {
 		// 拿到字符，并记录字符位置
 		sub := s[i]
 
+		// 当出现重复字符，则上个重复字符出现的位置及之前的子串可忽略
 		if oi, ok := em[sub]; ok {
 			tl := len(em)
 			if tl > l {
