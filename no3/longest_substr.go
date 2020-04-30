@@ -5,7 +5,7 @@ func lengthOfLongestSubstring(s string) int {
 		return 1
 	}
 
-	return lengthOfLongestSubstring2(s)
+	return lengthOfLongestSubstring3(s)
 }
 
 func lengthOfLongestSubstring1(s string) int {
@@ -77,6 +77,42 @@ func lengthOfLongestSubstring2(s string) int {
 	tl := len(em)
 	if tl > l {
 		l = tl
+	}
+
+	return l
+}
+
+func lengthOfLongestSubstring3(s string) int {
+	var l int
+	sl := len(s)
+
+	final := make([]byte, 0, len(s))
+
+	// 遍历字符串-拆细
+	// 什么时候开始，什么时候结束
+	for i := 0; i < sl; i++ {
+		// 拿到字符
+		sub := s[i]
+
+		// 当出现重复字符，则上个重复字符出现的位置及之前的子串可忽略
+		tmp := make([]byte, 0, len(final))
+		change := false
+		for j, fsub := range final {
+			if sub == fsub {
+				tmp = final[j+1:]
+				change = true
+				break
+			}
+		}
+		if change && len(tmp) < len(final) {
+			final = tmp
+		}
+
+		final = append(final, sub)
+		tl := len(final)
+		if tl > l {
+			l = tl
+		}
 	}
 
 	return l

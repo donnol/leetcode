@@ -26,3 +26,30 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 		})
 	}
 }
+
+func BenchmarkLengthOfLongestSubstring1(b *testing.B) {
+	in := "bbtabludbbtabludbbtabludbbtabludbbtabludbbtabludbbtablud"
+	for i := 0; i < b.N; i++ {
+		lengthOfLongestSubstring1(in)
+	}
+
+	// BenchmarkLengthOfLongestSubstring1-8   	   77547	     13269 ns/op	    7200 B/op	     100 allocs/op
+}
+
+func BenchmarkLengthOfLongestSubstring2(b *testing.B) {
+	in := "bbtabludbbtabludbbtabludbbtabludbbtabludbbtabludbbtablud"
+	for i := 0; i < b.N; i++ {
+		lengthOfLongestSubstring2(in)
+	}
+
+	// BenchmarkLengthOfLongestSubstring2-8   	  133368	      9087 ns/op	    2944 B/op	      42 allocs/op
+}
+
+func BenchmarkLengthOfLongestSubstring3(b *testing.B) {
+	in := "bbtabludbbtabludbbtabludbbtabludbbtabludbbtabludbbtablud"
+	for i := 0; i < b.N; i++ {
+		lengthOfLongestSubstring3(in)
+	}
+
+	// BenchmarkLengthOfLongestSubstring3-8   	 1269602	       901 ns/op	     280 B/op	      56 allocs/op
+}
