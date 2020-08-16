@@ -8,6 +8,10 @@ package no2
  * }
  */
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	return addTwoNumbers1(l1, l2)
+}
+
+func addTwoNumbers0(l1 *ListNode, l2 *ListNode) *ListNode {
 	var carry bool // 是否有进位
 	var tmpVal int
 	var n1, n2 = l1, l2
@@ -55,4 +59,37 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	}
 
 	return NewListNode(nums...)
+}
+
+func addTwoNumbers1(l1 *ListNode, l2 *ListNode) *ListNode {
+	if l1 == nil || l2 == nil {
+		return nil
+	}
+	head := &ListNode{Val: 0, Next: nil}
+	current := head
+	carry := 0
+	var x, y int
+	for l1 != nil || l2 != nil {
+		x, y = 0, 0
+		if l1 != nil {
+			x = l1.Val
+		}
+		if l2 != nil {
+			y = l2.Val
+		}
+		current.Next = &ListNode{Val: (x + y + carry) % 10, Next: nil}
+		current = current.Next
+		carry = (x + y + carry) / 10
+		if l1 != nil {
+			l1 = l1.Next
+		}
+		if l2 != nil {
+			l2 = l2.Next
+		}
+	}
+	if carry > 0 {
+		current.Next = &ListNode{Val: carry % 10, Next: nil}
+	}
+
+	return head.Next
 }
