@@ -9,7 +9,8 @@ func TestLongestPalindrome(t *testing.T) {
 		In   string
 		Want string
 	}{
-		{"aaaaaamadam", "madam"},
+		{"aaaaaamadam", "aaaaaa"},
+		{"aamadam", "madam"},
 	} {
 		r := longestPalindrome(cas.In)
 		if r != cas.Want {
