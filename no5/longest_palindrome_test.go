@@ -8,7 +8,7 @@ func TestLongestPalindrome(t *testing.T) {
 		in   string
 		want string
 	}{
-		{"1", "babad", "aba"},
+		{"1", "babad", "bab"},
 		{"2", "cbbd", "bb"},
 		{"3", "a", "a"},
 		{"4", "ac", "a"},
@@ -20,6 +20,7 @@ func TestLongestPalindrome(t *testing.T) {
 		{"10", "aaabaaa", "aaabaaa"},
 		{"11", "aaabaaaa", "aaabaaa"},
 		{"12", "tattarrattat", "tattarrattat"},
+		{"13", "civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth", "ranynar"},
 	} {
 		r := longestPalindrome(cas.in)
 		if r != cas.want {
