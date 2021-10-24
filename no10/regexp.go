@@ -1,6 +1,48 @@
 package no10
 
 func isMatch(s string, p string) bool { //nolint
+	return isMatchByLeetcode(s, p)
+}
+
+// 使用动态规划
+func isMatchByLeetcode(s string, p string) bool {
+	m, n := len(s), len(p)
+
+	// 判断函数：输入s和p的下标，判断对应字符是否一样
+	matches := func(i, j int) bool {
+		if i == 0 {
+			return false
+		}
+		if p[j-1] == '.' {
+			return true
+		}
+		return s[i-1] == p[j-1]
+	}
+
+	// 状态二维列表
+	f := make([][]bool, m+1)
+	for i := 0; i < len(f); i++ {
+		f[i] = make([]bool, n+1)
+	}
+	// 状态初始值
+	f[0][0] = true
+	// 状态转移过程：从左到右
+	for i := 0; i <= m; i++ {
+		for j := 1; j <= n; j++ {
+			if p[j-1] == '*' { // 如果前一个字符为*
+				f[i][j] = f[i][j] || f[i][j-2]
+				if matches(i, j-1) {
+					f[i][j] = f[i][j] || f[i-1][j]
+				}
+			} else if matches(i, j) {
+				f[i][j] = f[i][j] || f[i-1][j-1]
+			}
+		}
+	}
+	return f[m][n]
+}
+
+func isMatchByMyself(s string, p string) bool { //nolint
 	lofs := len(s)
 	lofp := len(p)
 
